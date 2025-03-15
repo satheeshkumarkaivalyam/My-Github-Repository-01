@@ -3,6 +3,8 @@ on: workflow_dispatch
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    env:
+      AWS_ASSUME_ROLE: ${{ secret.AWS_ROLE }}
     permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
@@ -14,7 +16,8 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::881490103233:role/github-actions-role
+          #role-to-assume: arn:aws:iam::881490103233:role/github-actions-role
+          role-to-assume: ${{ env.AWS_ASSUME_ROLE }}
           role-session-name: samplerolesession
           aws-region: ap-southeast-2
       # Upload a file to AWS s3
