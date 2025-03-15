@@ -24,5 +24,4 @@ jobs:
         run: |
           aws s3 ls
       - name: Echo AWS ROLE Secrets
-        run: echo "AWS Assume Role: ${{ env.AWS_ASSUME_ROLE }} "
-        
+        run: echo "AWS Assume Role:\ ${{ env.AWS_ASSUME_ROLE }} "        
