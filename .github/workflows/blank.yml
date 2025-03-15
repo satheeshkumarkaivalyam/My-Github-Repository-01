@@ -16,7 +16,6 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          #role-to-assume: arn:aws:iam::881490103233:role/github-actions-role
           role-to-assume: ${{ env.AWS_ASSUME_ROLE }}
           role-session-name: samplerolesession
           aws-region: ap-southeast-2
@@ -24,3 +23,6 @@ jobs:
       - name: List s3 Buckets in Sydney Region
         run: |
           aws s3 ls
+      - name: Echo AWS ROLE Secrets
+        run: echo "AWS Assume Role: ${{ env.AWS_ASSUME_ROLE }} "
+        
